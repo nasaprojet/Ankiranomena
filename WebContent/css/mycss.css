@@ -1,0 +1,110 @@
+html,body{
+	padding: 0;
+	margin: 0;
+	height: 100%;
+}
+.padding{
+	padding: 0px 80px 5px 5px;
+}
+
+#quotebackground{
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: auto;
+	height: auto;
+	color: white;
+}
+
+.image-responsive{
+	background: url(../img/mobile-security-solutions.jpg);
+	background-repeat: no-repeat;
+	background-size: cover; 
+	height:40%;
+	color: white; 
+	width: 100%;
+}
+
+.textResponsive{
+	text-align: center;
+	position: relative;
+	top: 40%;
+	font-size: 1.7em;
+	font-family:sans-serif;
+	font-weight: bold;
+}
+
+.titled-text {
+	padding: 5%;
+}
+.titled-text .h4{
+	font-weight: bold;
+}
+.titled-text p{
+	font-size: 13px;
+}
+.padding{
+	padding: 5%;
+}
+.padding-top{
+	padding-top: 5%;
+}
+.padding-bottom{
+	padding-bottom: 5%;
+}
+.padding-left{
+	padding-left: 5%;
+}
+.padding-right{
+	padding-right: 5%;
+}
+
+.margin-top{
+	margin-top: 5%;
+}
+
+.button-padding{
+	padding: 2% 2% 2% 5%;
+}
+.button-padding-2{
+	padding: 5% 5% 3% 5%;
+}
+
+.subtitle{
+	font-weight: bold;
+	font-size: 18px;
+	color: black;
+}
+.vertical-align-middle{
+	vertical-align: middle;
+}
+@media(max-width: 680px, max-height:396){
+	.textResponsive{
+		position: absolute;
+		vertical-align: middle;
+	}
+	.textResponsive h1, .textResponsive .h1{
+		font-size: 2em;
+	}
+}
+@media(max-width: 768px){
+	.resize{
+		padding: 0;
+		margin: 0;
+	}
+	.md-device-active{
+		display: none;
+	}
+	.sm-device-active{
+		display: block;
+	}
+}
+@media(min-device-width: 769px){
+	.sm-device-active{
+		display: none;
+	}
+}
+@media(max-width: 482px){
+	.textResponsive{
+		font-size: 1.4em;
+	}
+}
