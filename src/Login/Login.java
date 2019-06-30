@@ -7,10 +7,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import ModelDao.UserDao;
 
 import java.security.MessageDigest;
 
+import User.Classe;
 import User.UserModel;
 import config.BaseServlet;
 import config.FactoryDao;
@@ -34,6 +36,7 @@ public class Login extends BaseServlet{
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.setCharacterEncoding("UTF-8");
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/layout/login.jsp").forward(request, response);
 		
@@ -43,30 +46,44 @@ public class Login extends BaseServlet{
 		
 		request.setCharacterEncoding("UTF-8");
 		
+		
+//		String nom = request.getParameter("nom");
+//		int niveau = Integer.parseInt(request.getParameter("niveau"));
+//		int id_annee_scolaire = Integer.parseInt((request.getParameter("id_as")));
+//		String description = request.getParameter("description");
+
+		
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
 		String password = request.getParameter("password");
 		String role = request.getParameter("role");
+		
+		
+//		Classe classe = new Classe();
+//		classe.setNom(nom);
+//		classe.setNiveau(niveau);
+//		classe.setId_annee_scolaire(id_annee_scolaire);
+//		classe.setDescription(description);
+		
+		
 		UserModel user = new UserModel();
 		user.setNom(nom);
 		user.setPrenom(prenom);
 		user.setPassword(MD5(password));
 		user.setCode(password);
 		user.setRole(role);
-		boolean error = false;
+		
+//		throw new ServletException("Le nom est :"+user);
+	
+		
 		try {
 			userDao.ajoutUser(user);
 		}catch(Exception e) {
-			error = true;
 			throw new ServletException(e.getMessage());
 		}
-		// throw new ServletException("nom"+nom);
-		if(error){
-			throw new ServletException("error");
-		}
-		else{
-			this.getServletContext().getRequestDispatcher("/WEB-INF/layout/accueil.jsp").forward(request, response);
-		}
+		
+		this.getServletContext().getRequestDispatcher("/WEB-INF/layout/login.jsp").forward(request, response);
+	
 	}
 
 	private String MD5(String password) {

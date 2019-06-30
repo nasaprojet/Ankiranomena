@@ -14,20 +14,20 @@
 	<div class="container-fluid align-items-center" style="background: transparent;">
 		<div class="row ">
 			<div class="col-lg-4"></div>
-			<div class="ui inverted segment col-lg-4"  style="background: #00000080;border:solid white 1px; transform:translateY(25vh); animation: ease-in-out 200ms;">
+			<form action="testLogin" method="post" class="ui inverted segment col-lg-4"  style="background: #00000080;border:solid white 1px; transform:translateY(25vh); animation: ease-in-out 200ms;">
 				  <div class="ui inverted form">
 				    <div class="two fields">
 				      <div class="field">
 				        <label>Login</label>
-				        <input placeholder="First Name" type="text">
+				        <input name="login" placeholder="Votre Nom" type="text">
 				      </div>
 				      <div class="field">
 				        <label>Password</label>
-				        <input placeholder="Password" type="password">
+				        <input name="mdp" placeholder="Password" type="password">
 				      </div>
 				    </div>
 				    <div class="inline field">
-				      <div class="ui submit button">Me connecter</div>
+				      <button type="submit" class="ui  button">Me connecter</button>
 				      <div onclick="showModal()" class="ui submit button">M'inscrire</div>
 				      <div class="ui checkbox">
 				        <input type="checkbox" tabindex="0" class="hidden">
@@ -38,7 +38,7 @@
 				    </div>
 				   
 				  </div>
-			</div>
+			</form>
 			<div class="col-lg-4"></div>
 		</div>
 	</div>
@@ -46,6 +46,25 @@
 	<div id="modal" class="ui mini modal">
   <div class="header" style="background:#25dab3; color: white;">Formulaire d'inscription</div>
   <form action="login" method="post" class="ui inverted form">
+  
+<!--   					  <div class="field"> -->
+<!-- 				        <label>Nom</label> -->
+<!-- 				        <input name="nom" placeholder=" Name" type="text"> -->
+<!-- 				      </div> -->
+<!-- 				      <div class="field"> -->
+<!-- 				        <label>Niveau</label> -->
+<!-- 				        <input name="niveau" placeholder="Niveau" type="text"> -->
+<!-- 				      </div> -->
+<!-- 				      <div class="field"> -->
+<!-- 				        <label>id AS</label> -->
+<!-- 				        <input name="id_as" placeholder="id_as" type="text"> -->
+<!-- 				     </div> -->
+				     
+<!-- 				      <div class="field"> -->
+<!-- 				        <label>Description</label> -->
+<!-- 				        <input name="description" placeholder="description" type="text"> -->
+<!-- 				     </div> -->
+  
 				      <div class="field">
 				        <label>Nom</label>
 				        <input name="nom" placeholder="First Name" type="text">
@@ -68,11 +87,11 @@
 				         </select>
 				      </div>
   
-  <div class="actions">
+<!--   <div class="actions"> -->
     <button type="submit" class="ui  button">Enregistrer</button>
     <!-- <div class="ui button">Neutral</div>
     <div class="ui cancel button">Cancel</div> --><!-- approve -->
-  </div>
+<!--   </div> -->
   </form>
 </div>
 </body>

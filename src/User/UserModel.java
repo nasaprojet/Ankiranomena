@@ -7,6 +7,11 @@ public class UserModel {
 	private String password;
 	private String code;
 	private String role;
+	
+	public UserModel() {
+		
+	}
+	
 	public int getId_user() {
 	    
 		return id_user;
@@ -45,5 +50,7 @@ public class UserModel {
 		this.role = role;
 	}
 	
-	
+	public String toString() {
+		return "id_user: "+id_user+" nom: "+nom+" prenom: "+prenom+" password: "+password+" code: "+code+" role: "+role;
+	}
 }
