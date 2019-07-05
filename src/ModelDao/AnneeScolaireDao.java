@@ -6,8 +6,9 @@ import User.AnneeScolaire;
 import User.Classe;
 
 public interface AnneeScolaireDao {
-	void ajoutAnneeScolaire(AnneeScolaire anneeScolaire) throws Exception;
+	int ajoutAnneeScolaire(AnneeScolaire anneeScolaire) throws Exception;
 	List<AnneeScolaire> getAnneeScolaire() throws Exception;
-	List<AnneeScolaire> getListAnneeScolaire() throws Exception;
-	void ajoutClasse(Classe classe) throws Exception;
+	List<Classe> getListAnneeScolaire() throws Exception;
+	int ajoutClasse(Classe classe) throws Exception;
+	void deleteAnneeScolaire(int id_annee_scolaire) throws Exception;
 }

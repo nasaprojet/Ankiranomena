@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import User.AnneeScolaire;
 import User.Classe;
 import config.FactoryDao;
@@ -22,9 +23,9 @@ public class AnneeScolaireDaoImpl implements AnneeScolaireDao{
 	}
 	
 	@Override
-	public List<AnneeScolaire> getListAnneeScolaire() throws Exception {
+	public List<Classe> getListAnneeScolaire() throws Exception {
 	
-List<AnneeScolaire> anneescolaires = new ArrayList<AnneeScolaire>();
+		List<Classe> anneescolaires = new ArrayList<Classe>();
 		
 		Connection connexion = null;
 		Statement statement = null;
@@ -33,10 +34,10 @@ List<AnneeScolaire> anneescolaires = new ArrayList<AnneeScolaire>();
 		try {
 			connexion = factoryDao.getConnection();
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery("SELECT * FROM anneescolaire;");
+			resultat = statement.executeQuery("SELECT * FROM anneescolaire ORDER BY nom ASC;");
 			
 			while(resultat.next()) {
-				AnneeScolaire anneescolaire = new AnneeScolaire();
+				Classe anneescolaire = new Classe();
 				anneescolaire.setId_annee_scolaire(resultat.getInt("id_annee_scolaire"));
 				anneescolaire.setNom_as(resultat.getString("nom"));
 				anneescolaire.setDebut(resultat.getString("debut"));
@@ -96,11 +97,11 @@ List<AnneeScolaire> anneescolaires = new ArrayList<AnneeScolaire>();
 	}
 
 	@Override
-	public void ajoutAnneeScolaire(AnneeScolaire anneeScolaire) throws Exception {
+	public int ajoutAnneeScolaire(AnneeScolaire anneeScolaire) throws Exception {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
 //		String query = "";
-		
+		int retour =-1;
 		try {
 			connexion = factoryDao.getConnection();
 			
@@ -113,7 +114,8 @@ List<AnneeScolaire> anneescolaires = new ArrayList<AnneeScolaire>();
 			preparedStatement.setString(3,anneeScolaire.getFin());
 			preparedStatement.setString(4,anneeScolaire.getDescription_as());
 				
-			preparedStatement.executeUpdate();
+			retour = preparedStatement.executeUpdate();
+			
 			preparedStatement.close();
 			connexion.close();
 		}
@@ -121,28 +123,30 @@ List<AnneeScolaire> anneescolaires = new ArrayList<AnneeScolaire>();
 			throw new Exception(e.getMessage());
 		}
 		
+		return retour;
 		
 	}
 
 	@Override
-	public void ajoutClasse(Classe classe) throws Exception{
+	public int ajoutClasse(Classe classe) throws Exception{
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
 //		String query = "";
+		int retour = -1;
 		
 		try {
 			connexion = factoryDao.getConnection();
 			
 			//id_ec,,?
 			
-			preparedStatement = connexion.prepareStatement("INSERT INTO classe (nom,niveau,id_annee_scolaire,description) VALUES(?,?,?,?);");
+			preparedStatement = connexion.prepareStatement("INSERT INTO classe (nom_classe,niveau,id_annee_scolaire,description) VALUES(?,?,?,?);");
 			//preparedStatement.setInt(1,ecue.getId_ec());
 			preparedStatement.setString(1,classe.getNom_classe());
 			preparedStatement.setInt(2,classe.getNiveau());
 			preparedStatement.setInt(3,classe.getId_annee_scolaire());
 			preparedStatement.setString(4,classe.getDescription_classe());
 				
-			preparedStatement.executeUpdate();
+			retour = preparedStatement.executeUpdate();
 			preparedStatement.close();
 			connexion.close();
 		}
@@ -150,7 +154,29 @@ List<AnneeScolaire> anneescolaires = new ArrayList<AnneeScolaire>();
 			throw new Exception(e.getMessage());
 		}
 		
+		return  retour;
+		
+	}
 
+	@Override
+	public void deleteAnneeScolaire(int id_annee_scolaire) throws Exception {
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			
+			connexion = factoryDao.getConnection();
+			preparedStatement = connexion.prepareStatement("DELETE from anneescolaire where id_annee_scolaire=?;");
+			preparedStatement.setInt(1,id_annee_scolaire);
+			preparedStatement.executeUpdate();
+			
+			
+			preparedStatement.close();
+			connexion.close();
+			
+		}catch(SQLException e) {
+			throw new Exception("sql delete :"+e.getMessage());
+		}
 		
 	}
 
