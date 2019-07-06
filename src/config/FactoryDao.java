@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import ModelDao.AnneeScolaireDao;
+import ModelDao.AnneeScolaireDaoImpl;
+import ModelDao.ClasseDao;
+import ModelDao.ClasseDaoImpl;
 import ModelDao.UserDao;
 import ModelDao.UserDaoImpl;
-
-
-
-
 
 
 public class FactoryDao {
@@ -46,5 +46,15 @@ public class FactoryDao {
 		// TODO Auto-generated method stub
 		return new UserDaoImpl(this);
 	}
+	public AnneeScolaireDao getAnneeScolaireDao() {
+		// TODO Auto-generated method stub
+		return new AnneeScolaireDaoImpl(this);
+	}
+	public ClasseDao getClasseDao() {
+		// TODO Auto-generated method stub
+		return new ClasseDaoImpl(this);
+	}
+	
+	
 	
 }
